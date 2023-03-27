@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { WsService } from './shared/services/ws.service';
 
 @NgModule({
   declarations: [
@@ -10,9 +11,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+   
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
