@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EventsService } from './shared/services/events.service';
 import { WsService } from './shared/services/ws.service';
 
 @Component({
@@ -9,11 +10,8 @@ import { WsService } from './shared/services/ws.service';
 export class AppComponent {
   
   title = 'front-exam';
-  constructor(private ws: WsService) {}
+  constructor(private source: EventsService,private ws: WsService) {}
   ngOnInit() {
-    this.ws.socket.emit('message', 'Hello from Angular')
-    this.ws.socket.on('news', (data) => {
-      console.log(data)
-    });
+    this.source.getEvents();
   }  
 }
