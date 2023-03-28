@@ -3,14 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WsService } from './shared/services/ws.service';
 import { FormulariosComponent } from './components/users/formularios/formularios.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MenuComponent } from './components/menu/menu.component';
+import { BearerInterceptor } from './interceptor/bearer.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    FormulariosComponent
+    FormulariosComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +22,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [
-   
+   {
+    provide: HTTP_INTERCEPTORS, useClass: BearerInterceptor, multi: true
+   }
   ],
   bootstrap: [AppComponent]
 })

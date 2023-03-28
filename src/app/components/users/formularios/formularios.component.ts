@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { UsersService } from '../data/users.service';
 
@@ -25,7 +26,8 @@ export class FormulariosComponent {
 
   constructor(
     private fb: FormBuilder,
-    private UserService: UsersService) {}
+    private UserService: UsersService,
+    private router: Router) {}
 
   onSubmit() {
     if (this.registerForm.invalid) return console.log('formulario invalido', this.registerForm.invalid)
@@ -40,7 +42,8 @@ export class FormulariosComponent {
     if (this.loginForm.invalid) return console.log('formulario invalido', this.loginForm.invalid)
     this.UserService.login(this.loginForm.value as User).subscribe(
       (data) => {
-        console.log(data);
+        localStorage.setItem('token', data.token);
+        this.router.navigate(['/menu']);
       }
     )
   }

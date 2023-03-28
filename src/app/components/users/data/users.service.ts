@@ -8,7 +8,6 @@ import { Token} from 'src/app/interfaces/token';
   providedIn: 'root'
 })
 export class UsersService {
-
   constructor(private http: HttpClient) { }
 
   register(user: User): Observable<User> {
@@ -26,6 +25,18 @@ export class UsersService {
   login(user: User): Observable<Token> {
     return this.http.post<Token>(API_URL + '/users/login', user).pipe(
       tap((message) => console.log('user logged in successfully', message)),
+      catchError(
+        (error) => {
+          console.log(error);
+          throw error;
+        }
+      )
+    );
+  }
+
+  getUser(): Observable<User> {
+    return this.http.get<User>(API_URL + '/user').pipe(
+      tap((message) => console.log('user fetched successfully', message)),
       catchError(
         (error) => {
           console.log(error);

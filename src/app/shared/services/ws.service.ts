@@ -7,11 +7,11 @@ import { API_URL } from 'src/app/env';
 })
 export class WsService {
   socket = io(API_URL);
-  getUsersConnected(){
-    this.socket.on('usersConnected', (data) => {
-      console.log(data);
-    });
+  connected(user_id: number){
+    this.socket.emit('connected', user_id);
   }
-  
+  disconnected(user_id: number){
+    this.socket.emit('disconnected', user_id);
+  }
 }
 
