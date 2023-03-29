@@ -42,6 +42,7 @@ export class FormulariosComponent {
     if (this.loginForm.invalid) return console.log('formulario invalido', this.loginForm.invalid)
     this.UserService.login(this.loginForm.value as User).subscribe(
       (data) => {
+        console.log(data);
         localStorage.setItem('token', data.token);
         this.router.navigate(['/menu']);
       }
