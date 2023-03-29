@@ -1,17 +1,7 @@
-<div class="display-wrapper">
-    <div class="display">
-        <h1>
-            user 1
-        </h1>
-    </div>
-    <div class="display">
-        <h1>
-            user 2
-        </h1>
-    </div>
-    <div class="display">
-    <h1>
-        user 3
-    </h1>
-    </div>
-</div>
+<ul>
+  <li *ngFor="let user of users; let i = index">
+    <button (click)="selectedBoat(i)">pantalla {{ i + 1 }}</button>
+  </li>
+</ul>
+
+<app-barco ></app-barco>
