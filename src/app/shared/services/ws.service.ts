@@ -3,15 +3,14 @@ import { io } from 'socket.io-client';
 import { API_URL } from 'src/app/env';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WsService {
   socket = io(API_URL);
-  connected(user_id: number){
-    this.socket.emit('connected', user_id);
+  connected() {
+    this.socket.emit('connected', 'connected');
   }
-  disconnected(user_id: number){
-    this.socket.emit('disconnected', user_id);
+  disconnected() {
+    this.socket.emit('disconnected', 'disconnected');
   }
 }
-
