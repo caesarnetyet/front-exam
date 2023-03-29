@@ -8,18 +8,26 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './components/menu/menu.component';
 import { BearerInterceptor } from './interceptor/bearer.interceptor';
+
+import { BarcoComponent } from './components/barco/barco.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SalaComponent } from './components/sala/sala.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     FormulariosComponent,
-    MenuComponent
+    MenuComponent,
+    BarcoComponent,
+    SalaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
    {
