@@ -38,7 +38,7 @@ export class BarcoComponent implements OnInit {
     }else {
       this.ws.socket.emit('nextBoat', position);
     }
-    
+
     this.thisDisplay = false
   }
 }
