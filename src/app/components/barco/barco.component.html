@@ -1,4 +1,8 @@
 <ng-container>
-  <img @moveInLeft src="https://images.vexels.com/media/users/3/182678/isolated/preview/7ea4faa0bcd9705ce266e7769d01318d-barco-dibujado-a-mano.png" alt="">
+  <img
+    (@moveInLeft.done)="onAnimationDone()"
+    @moveInLeft
+    src="https://images.vexels.com/media/users/3/182678/isolated/preview/7ea4faa0bcd9705ce266e7769d01318d-barco-dibujado-a-mano.png"
+    alt=""
+  />
 </ng-container>
-

@@ -8,28 +8,31 @@ import { BearerGuard } from './guards/bearer.guard';
 
 const routes: Routes = [
   {
-    path: 'home', component: FormulariosComponent,
+    path: 'home',
+    component: FormulariosComponent,
   },
   {
-    path: 'menu', component: MenuComponent, canActivate: [BearerGuard]
+    path: 'menu',
+    component: MenuComponent,
+    canActivate: [BearerGuard],
   },
   {
     path: 'barco',
-    component: BarcoComponent
+    component: BarcoComponent,
   },
   {
     path: 'sala',
-    component: SalaComponent
-  }
+    component: SalaComponent,
+  },
   {
-    path: '**', redirectTo: '/home', pathMatch: 'full'
-  }
+    path: '**',
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule {}
