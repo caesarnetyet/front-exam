@@ -9,8 +9,10 @@ import { API_URL } from 'src/app/env';
 export class WsService {
   socket = io(API_URL);
   users = new BehaviorSubject<string[]>([]);
+  boats = new BehaviorSubject<string[]>([]);
   selectedBoad = new Subject<number>();
   thisDisplay = new Subject<boolean>();
+  startEnabled = new Subject<boolean>();
   constructor() {}
 
   listenSockets() {
@@ -18,15 +20,25 @@ export class WsService {
       this.users.next(data);
     });
     this.socket.on('boatPosition', (data: number) => {
-      console.log('paso', data, this.socket.id);
-      console.log(this.users.value);
-      if (this.users.value[data] === this.socket.id) {
+      console.log('paso', this.boats.value[data], this.socket.id);
+      
+      if (this.boats.value[data] === this.socket.id) {
         console.log(true);
         this.thisDisplay.next(true);
       } else {
         this.thisDisplay.next(false);
       }
     });
+
+    this.socket.on('boats', (data: string[]) => {
+      this.boats.next(data);
+      if (!data.some(unef => unef == null) && data.length > 1) {
+        this.startEnabled.next(true);
+      }else {
+        this.startEnabled.next(false);
+      }
+      
+    })
   }
   nextBoat() {
     console.log('nextBoat');

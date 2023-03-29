@@ -18,13 +18,16 @@ import { WsService } from 'src/app/shared/services/ws.service';
 export class BarcoComponent implements OnInit {
   state: string = 'original';
   boatIndex?: number;
-  users: string[] = [];
+  boats: string[] = [];
   constructor(private ws: WsService) {}
   thisDisplay = false;
   ngOnInit(): void {
     this.ws.selectedBoad.subscribe((data) => (this.boatIndex = data));
     this.ws.thisDisplay.subscribe((data) => (this.thisDisplay = data));
-    this.ws.users.subscribe((data) => (this.users = data));
+    this.ws.boats.subscribe((data) => {
+      this.boats = data
+      console.log(data)
+    });
   }
   moveImage() {
     this.state = this.state === 'original' ? 'moved' : 'original';
@@ -32,10 +35,11 @@ export class BarcoComponent implements OnInit {
 
   onAnimationDone() {
     console.log('done')
-    const position = this.users.indexOf(this.ws.socket.id) -1
-    if (position === -1) {
-      this.ws.socket.emit('nextBoat', this.users.length -1);
+    const position = this.boats.indexOf(this.ws.socket.id) +1;
+    if (position === this.boats.length) {
+      this.ws.socket.emit('nextBoat', 0);
     }else {
+      console.log(position)
       this.ws.socket.emit('nextBoat', position);
     }
 

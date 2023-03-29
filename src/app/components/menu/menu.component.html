@@ -4,4 +4,14 @@
   </li>
 </ul>
 
+<h1>Select your position</h1>
+<select [(ngModel)]="selectedPosition">
+  <option *ngFor="let position of users; let i=index" [value]="i">
+    Pantalla {{ i + 1 }}
+  </option>
+</select>
+<button (click)="sendPosition()">Add Position</button>
+
+  <button *ngIf="startEnabled" (click)="startBoat()">Empezar a navegar!</button>
+
 <app-barco ></app-barco>
