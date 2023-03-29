@@ -36,6 +36,7 @@ export class WsService {
         this.startEnabled.next(true);
       }else {
         this.startEnabled.next(false);
+        this.thisDisplay.next(false)
       }
       
     })
